@@ -75,11 +75,11 @@ keith({ nomCom: "videologo", categorie: "modern-logo", reaction: "✋" }, async 
             return repondre("*_Invalid number. Please reply with a valid number._*");
         }
 
-        // Send the logo
+        // Send the logo if URL is found
         if (logoUrl) {
           await zk.sendMessage(dest, {
             video: { url: logoUrl },
-            mimetype: video/mp4,
+            mimetype: "video/mp4",
             caption: `*Downloaded by Alpha Md*`,
           }, { quoted: ms });
         }
@@ -97,7 +97,7 @@ const fetchLogoUrl = async (url, name) => {
     const response = await axios.get(`https://api-pink-venom.vercel.app/api/logo`, {
       params: { url, name }
     });
-    return response.data.result.download_url;
+    return response.data.result.download_url; // Ensure this is the correct path for the download URL in the API response
   } catch (error) {
     console.error("Error fetching logo:", error);
     return null;
