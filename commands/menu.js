@@ -1,5 +1,5 @@
-// this is my shit bro 😂
-// get the fuck outa here 
+// this is Keith shit nuhh😂😂
+//get the fuck outa here
 
 const axios = require("axios");
 const { keith } = require(__dirname + "/../keizzah/keith");
@@ -28,6 +28,7 @@ const toFancyLowercaseFont = (text) => {
     return text.split('').map(char => fonts[char] || char).join('');
 };
 
+// Function to format uptime
 const formatUptime = (seconds) => {
     seconds = Number(seconds);
     const days = Math.floor(seconds / 86400);
@@ -43,6 +44,7 @@ const formatUptime = (seconds) => {
     ].filter(Boolean).join(', ');
 };
 
+// Function to fetch GitHub stats
 const fetchGitHubStats = async () => {
     try {
         const response = await axios.get("https://api.github.com/repos/Keithkeizzah/ALPHA-MD1");
@@ -58,46 +60,46 @@ const fetchGitHubStats = async () => {
 
 // Random quotes array
 const quotes = [
-  "Dream big, work hard.",
-  "Stay humble, hustle hard.",
-  "Believe in yourself.",
-  "Success is earned, not given.",
-  "Actions speak louder than words.",
-  "The best is yet to come.",
-  "Keep pushing forward.",
-  "Do more than just exist.",
-  "Progress, not perfection.",
-  "Stay positive, work hard.",
-  "Be the change you seek.",
-  "Never stop learning.",
-  "Chase your dreams.",
-  "Be your own hero.",
-  "Life is what you make of it.",
-  "Do it with passion or not at all.",
-  "You are stronger than you think.",
-  "Create your own path.",
-  "Make today count.",
-  "Embrace the journey.",
-  "The best way out is always through.",
-  "Strive for progress, not perfection.",
-  "Don't wish for it, work for it.",
-  "Live, laugh, love.",
-  "Keep going, you're getting there.",
-  "Don’t stop until you’re proud.",
-  "Success is a journey, not a destination.",
-  "Take the risk or lose the chance.",
-  "It’s never too late.",
-  "Believe you can and you're halfway there.",
-  "Small steps lead to big changes.",
-  "Happiness depends on ourselves.",
-  "Take chances, make mistakes.",
-  "Be a voice, not an echo.",
-  "The sky is the limit.",
-  "You miss 100% of the shots you don’t take.",
-  "Start where you are, use what you have.",
-  "The future belongs to those who believe.",
-  "Don’t count the days, make the days count.",
-  "Success is not the key to happiness. Happiness is the key to success."
+    "Dream big, work hard.",
+    "Stay humble, hustle hard.",
+    "Believe in yourself.",
+    "Success is earned, not given.",
+    "Actions speak louder than words.",
+    "The best is yet to come.",
+    "Keep pushing forward.",
+    "Do more than just exist.",
+    "Progress, not perfection.",
+    "Stay positive, work hard.",
+    "Be the change you seek.",
+    "Never stop learning.",
+    "Chase your dreams.",
+    "Be your own hero.",
+    "Life is what you make of it.",
+    "Do it with passion or not at all.",
+    "You are stronger than you think.",
+    "Create your own path.",
+    "Make today count.",
+    "Embrace the journey.",
+    "The best way out is always through.",
+    "Strive for progress, not perfection.",
+    "Don't wish for it, work for it.",
+    "Live, laugh, love.",
+    "Keep going, you're getting there.",
+    "Don’t stop until you’re proud.",
+    "Success is a journey, not a destination.",
+    "Take the risk or lose the chance.",
+    "It’s never too late.",
+    "Believe you can and you're halfway there.",
+    "Small steps lead to big changes.",
+    "Happiness depends on ourselves.",
+    "Take chances, make mistakes.",
+    "Be a voice, not an echo.",
+    "The sky is the limit.",
+    "You miss 100% of the shots you don’t take.",
+    "Start where you are, use what you have.",
+    "The future belongs to those who believe.",
+    "Don’t count the days, make the days count.",
+    "Success is not the key to happiness. Happiness is the key to success."
 ];
 
 // Function to get a random quote
@@ -106,6 +108,7 @@ const getRandomQuote = () => {
     return quotes[randomIndex];
 };
 
+// Keith command handler for 'menu' command
 keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie: "SYSTEM" }, async (message, client, config) => {
     const { ms, respond, prefix, nomAuteurMessage } = config;
     const commands = require(__dirname + "/../keizzah/keith").cm;
@@ -121,6 +124,7 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
         categorizedCommands[category].push(command.nomCom);
     });
 
+    // Get current time and format it
     moment.tz.setDefault("Africa/Nairobi");
     const currentTime = moment();
     const formattedTime = currentTime.format("HH:mm:ss");
@@ -130,11 +134,14 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
     const greetings = ["Good Morning 🌄", "Good Afternoon 🌃", "Good Evening ⛅", "Good Night 🌙"];
     const greeting = currentHour < 12 ? greetings[0] : currentHour < 17 ? greetings[1] : currentHour < 21 ? greetings[2] : greetings[3];
 
+    // Fetch GitHub stats
     const { totalUsers } = await fetchGitHubStats();
     const formattedTotalUsers = totalUsers.toLocaleString();
 
+    // Get random quote
     const randomQuote = getRandomQuote();
 
+    // Prepare response message
     let responseMessage = `
  ${greeting}, *${nomAuteurMessage || "User"}*
 
@@ -142,18 +149,18 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
 "💎${randomQuote}💎"
 
 ╭━━━ 〔 𝐀𝐋𝐏𝐇𝐀-𝐌𝐃 〕━━━┈⊷
-┃✵╭──────────────
+┃✵╭───────────────
 ┃✵│▸ *ʙᴏᴛ ᴏᴡɴᴇʀ:* ${settings.OWNER_NAME}
 ┃✵│▸ *ᴘʀᴇғɪx:* *[ ${settings.PREFIXE} ]*
 ┃✵│▸ *ᴛɪᴍᴇ:* ${formattedTime}
-┃✵│▸ *ᴄᴏᴍᴍᴀɴᴅꜱ:* ${commands.length} 
+┃✵│▸ *ᴄᴏᴍᴍᴀɴᴅꜱ:* ${commands.length}
 ┃✵│▸ *ᴅᴀᴛᴇ:* ${formattedDate}
 ┃✵│▸ *ᴍᴏᴅᴇ:* ${mode}
 ┃✵│▸ *ᴛɪᴍᴇ ᴢᴏɴᴇ:* Africa/Nairobi
 ┃✵│▸ *ᴛᴏᴛᴀʟ ᴜsᴇʀs:* ${formattedTotalUsers} users
 ┃✵│▸ *ʀᴀᴍ:* ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
 ┃✵│▸ *ᴜᴘᴛɪᴍᴇ:* ${formatUptime(process.uptime())}
-┃✵╰──────────────
+┃✵╰───────────────
 ╰━━━━━━━━━━━━━━━┈⊷
 ━━━━━━━━━━━━━━━━
 🎇 *QUOTE* 🎆
@@ -162,6 +169,7 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
 > 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐊𝐄𝐈𝐓𝐇
 `;
 
+    // List commands
     let commandsList = "*𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄 𝐂𝐎𝐌𝐌𝐀𝐍𝐃𝐒*\n";
     const sortedCategories = Object.keys(categorizedCommands).sort();
     let commandIndex = 1;
@@ -177,6 +185,7 @@ keith({ nomCom: "menu", aliases: ["liste", "helplist", "commandlist"], categorie
 
     commandsList += readMore + "\nin honor of Alpha\n";
 
+    // Send message
     try {
         const senderName = message.sender || message.from;
         await client.sendMessage(message, {
