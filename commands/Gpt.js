@@ -41,7 +41,7 @@ keith({
 
 /*const { keith } = require("../keizzah/keith");
 
-keith({
+//keith({
   nomCom: "gpt",
   aliases: ["gpt4", "gemini", "gpt2", "gpt3"],
   reaction: '⚔️',
