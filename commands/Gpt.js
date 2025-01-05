@@ -36,14 +36,9 @@ keith({
   })();
 });
 
-
-
-
-/*const { keith } = require("../keizzah/keith");
-
-//keith({
-  nomCom: "gpt",
-  aliases: ["gpt4", "gemini", "gpt2", "gpt3"],
+keith({
+  nomCom: "gemini",
+  aliases: ["gpto4", "gemni", "gpt2", "gpt3"],
   reaction: '⚔️',
   categorie: "search"
 }, async (context, message, params) => {
@@ -72,4 +67,4 @@ keith({
     await repondre("I am unable to generate responses\n\n" + e.message);
   }
 });
-/+
+
