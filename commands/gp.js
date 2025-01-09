@@ -1,34 +1,6 @@
-
 const { keith } = require("../keizzah/keith");
-const ai = require('unlimited-ai');
 const fs = require('fs');
-
-// Function to write conversation history to the store.json file
-const writeConversationToFile = (conversation) => {
-  // Read the existing conversation history from 'store.json'
-  fs.readFile('store.json', 'utf8', (err, data) => {
-    let conversationHistory = [];
-
-    // If there's no error and data exists, parse it as JSON
-    if (!err && data) {
-      try {
-        conversationHistory = JSON.parse(data);
-      } catch (e) {
-        console.error("Error parsing conversation history:", e);
-      }
-    }
-
-    // Add the new conversation to the history
-    conversationHistory.push(conversation);
-
-    // Write the updated conversation history back to 'store.json'
-    fs.writeFile('store.json', JSON.stringify(conversationHistory, null, 2), (err) => {
-      if (err) {
-        console.error("Error writing to store.json:", err);
-      }
-    });
-  });
-};
+const ai = require('unlimited-ai');
 
 keith({
   nomCom: "gp",
@@ -36,41 +8,43 @@ keith({
   reaction: '⚔️',
   categorie: "search"
 }, async (context, message, params) => {
-  const { repondre, arg } = params;
-  const alpha = arg.join(" ").trim();
+  const { repondre, arg } = params;  // Use args for the command arguments
+  const alpha = arg.join(" ").trim(); // Assuming args is an array of command parts
 
-  // If no song name or text is provided, return an error
-  if (!alpha) {
-    return repondre("Please provide a song name.");
+  if (!alpha) return repondre("Please provide text.");
+
+  // Load previous conversation from store.json, if exists
+  let conversationData = [];
+  try {
+      const rawData = fs.readFileSync('store.json', 'utf8');
+      conversationData = JSON.parse(rawData);
+  } catch (err) {
+      console.log('No previous conversation found, starting new one.');
   }
 
-  const text = alpha; // The text to be sent for processing by AI
+  // Define the model and the user/system message
+  const model = 'gpt-4-turbo-2024-04-09';
+  const userMessage = { role: 'user', content: alpha };  // Change 'text' to 'alpha' as it's the user input
+  const systemMessage = { role: 'system', content: 'You are an assistant in WhatsApp. You are called Keith. You respond to user commands.' };
+
+  // Add user input to the conversation data
+  conversationData.push(userMessage);
+  conversationData.push(systemMessage);
 
   try {
-    const model = 'gpt-4-turbo-2024-04-09'; // Specify the model to use for AI
+      // Get AI response from the model
+      const aiResponse = await ai.generate(model, conversationData);
 
-    const messages = [
-      { role: 'user', content: text },
-      { role: 'system', content: 'You are an assistant in WhatsApp. You are called Keith. You respond to user commands.' }
-    ];
+      // Add AI response to the conversation data
+      conversationData.push({ role: 'assistant', content: aiResponse });
 
-    // Generate AI response
-    const response = await ai.generate(model, messages);
+      // Write the updated conversation data to store.json
+      fs.writeFileSync('store.json', JSON.stringify(conversationData, null, 2));
 
-    // Send the AI response back to the user
-    await repondre(response);
-
-    // Prepare the conversation object to store
-    const conversation = {
-      user: text,
-      ai: response
-    };
-
-    // Write the conversation to the file
-    writeConversationToFile(conversation);
-
+      // Reply to the user with AI's response
+      await repondre(aiResponse);
   } catch (error) {
-    console.error("Error generating AI response:", error);
-    await repondre("Sorry, I couldn't process your request.");
+      console.error("Error with AI generation: ", error);
+      await repondre("Sorry, there was an error generating the response.");
   }
 });
