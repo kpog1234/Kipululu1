@@ -30,7 +30,7 @@ const writeConversationToFile = (conversation) => {
 };
 
 keith({
-  nomCom: "gpt",
+  nomCom: "gp",
   aliases: ["gpt4", "ai"],
   reaction: '⚔️',
   categorie: "search"
