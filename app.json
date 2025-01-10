@@ -25,12 +25,12 @@
     "AUTO_REPLY": {
       "description": "This sets a greeting message when someone texts you automatically",
       "value": "yes",
-      "required": false
+      "required": true
     },
     "AUTO_LIKE_STATUS": {
       "description": "Your contact status will be liked automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
       "value": "yes",
-      "required": false
+      "required": true
     },
     "CHAT_BOT": {
       "description": "If turned on, the chatbot will automatically chat in your private messages or groups.",
@@ -44,8 +44,8 @@
     },
     "PM_PERMIT": {
       "description": "Restrict other users from using your bot in private messages (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
-      "value": "yes",
-      "required": false
+      "value": "no",
+      "required": true
     },
     "ANTI_VV": {
       "description": "Detect view-once messages",
@@ -79,7 +79,7 @@
     },
     "HEROKU_APP_NAME": {
       "description": "Insert your Heroku app name (required)",
-      "value": "",
+      "value": "Kipululu_wa_twitter",
       "required": true
     },
     "SESSION_ID": {
@@ -88,9 +88,9 @@
       "required": true
     },
     "OWNER_NAME": {
-      "description": "Your name",
-      "value": "keithkeizzah",
-      "required": false
+      "description": "your name",
+      "value": "Kipululu_wa_twitter",
+      "required": true
     },
     "AUTO_READ_MESSAGES": {
       "description": "yes toactivate no to deactivate",
@@ -114,8 +114,8 @@
     },
     "PRESENCE": {
       "description": "Mark your presence: 1 for online, 2 for typing, 3 for recording, or leave blank for real state",
-      "value": "",
-      "required": false
+      "value": "typing",
+      "required": true
     },
     "ANTI_DELETE_MESSAGE": {
       "description": "Enable anti-delete message (set 'yes' to activate or 'no' to deactivate)",
